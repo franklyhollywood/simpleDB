@@ -11,7 +11,7 @@ describe('SimpleDB', () => {
     );
   });
 
-  it.only('should save file into directory', () => {
+  it('should save file into directory', () => {
     //create file
 
     const newFile = { text: 'Hello world' };
