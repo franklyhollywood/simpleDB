@@ -22,3 +22,5 @@ describe('SimpleDB', () => {
       .then((contents) => expect(contents).toEqual(newFile));
   });
 });
+
+it('should get the file by ID');
