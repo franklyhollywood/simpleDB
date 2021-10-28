@@ -11,7 +11,7 @@ describe('SimpleDB', () => {
     );
   });
 
-  it('should save file into directory', () => {
+  it.only('should save file into directory', () => {
     //create file
 
     const newFile = { text: 'Hello world' };
@@ -20,5 +20,9 @@ describe('SimpleDB', () => {
       .save(newFile)
       .then(() => simpleDB.get(newFile.id))
       .then((contents) => expect(contents).toEqual(newFile));
+  });
+  it('should get the file by ID', () => {
+    const newFile = { text: 'Hello world' };
+    const simpleDB = new SimpleDB(rootDir);
   });
 });
