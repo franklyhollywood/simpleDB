@@ -10,8 +10,8 @@ describe('SimpleDB', () => {
       mkdir(rootDir, { recursive: true })
     );
   });
-
-  it.only('should save file into directory', () => {
+  //should save file in
+  it('should save file into directory, and gets file by id', () => {
     //create file
 
     const newFile = { text: 'Hello world' };
@@ -21,8 +21,21 @@ describe('SimpleDB', () => {
       .then(() => simpleDB.get(newFile.id))
       .then((contents) => expect(contents).toEqual(newFile));
   });
-  it('should get the file by ID', () => {
-    const newFile = { text: 'Hello world' };
+  it('should get all the files', () => {
+    //save at least two files
+    //use get all function
+    //set up expectation - an array and inside array is objects that ID and text inside it.
     const simpleDB = new SimpleDB(rootDir);
+    const newFile = { text: 'Hello world' };
+    const secondFile = { text: 'Hello World 2' };
+    const expectation = [
+      { id: expect.any(String), text: 'Hello world' },
+      { id: expect.any(String), text: 'Hello World 2' },
+    ];
+    return simpleDB
+      .save(newFile)
+      .then(() => simpleDB.save(secondFile))
+      .then(() => simpleDB.getAll())
+      .then((files) => expect(files).toEqual(expectation));
   });
 });
